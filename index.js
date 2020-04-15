@@ -116,12 +116,16 @@ async function GetVariantResponseCookie(url, cookie) {
 
   console.log('Group = ', group);
 
-  const new_header = '<title>Ayushi`s Variant : ' + URLSelected + '</title>';
-  const new_header_title = 'Ayushi`s Variant : ' + URLSelected + '';
-  const new_desc = 'Hello Cloudy! This is Ayushi`s custom description for ' + URLSelected;
+  // const new_header = '<title>Ayushi`s Variant : ' + URLSelected + '</title>';
+  const new_header = '<title>Ayushi`s Variant</title>';
+  // const new_header_title = 'Ayushi`s Variant : ' + URLSelected + '';
+  const new_header_title = 'Ayushi`s Variant';
+  // const new_desc = 'Hello Cloudy! This is Ayushi`s custom description for ' + URLSelected;
+  const new_desc = 'Hello Cloudy! This is Ayushi`s custom description';
   const new_url = 'https://www.linkedin.com/in/purohitayushi';
   var new_url_display_text = 'Connect with me here!';
-  const new_title = 'Interned - Ayushi : ' + URLSelected;
+  // const new_title = 'Interned - Ayushi : ' + URLSelected;
+  const new_title = 'Interned - Ayushi Purohit';
 
   class HeaderRewriter {
     element(element) {
