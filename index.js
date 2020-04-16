@@ -7,13 +7,10 @@ addEventListener('fetch', event => {
  */
 async function handleRequest(request) {
 
-  var respToSendText;
-  var respFin;
   var cookieURL;
   var URLSelected;
-  let testResp = new Response();
-  const CNAME = 'variant'
   const cookie = request.headers.get('cookie');
+
   if (cookie && (cookie.indexOf('Variant-1') > -1)) {
     console.log('Cookie = ', cookie);
     let cookieArr = cookie.split(',');
@@ -37,7 +34,7 @@ async function handleRequest(request) {
     let urlToFetch = 'https://cfw-takehome.developers.workers.dev/api/variants';
     // respToSendText = GetVariantResponse(urlToFetch, 'Y');
 
-    return (GetVariantResponseCookie(urlToFetch, 'Y'))
+    return (GetVariantResponseCookie(urlToFetch))
   }
 
   //--------------------------------------Normal w/o Cookie------------------------
@@ -92,10 +89,7 @@ async function handleRequest(request) {
     }))
 }
 
-async function GetVariantResponseCookie(url, cookie) {
-
-  const CNAME = 'variant'
-  var testResp = new Response();
+async function GetVariantResponseCookie(url) {
 
   let urlToFetch = url;
 
@@ -112,7 +106,7 @@ async function GetVariantResponseCookie(url, cookie) {
   let finalResp = await newResp.text();
   URLSelected = urlToFinallyFetch == variants[0] ? 'Variant-1' : 'Variant-2';
 
-  let group = urlToFinallyFetch == variants[0] ? ('Variant-1,' + variants[0]) : ('Variant-2,' + variants[1]);
+  let group = urlToFinallyFetch == variants[0] ? ('Variant-1,' + variants[0]) : ('Variant-2,' + variants[1]); //to set the cookie
 
   console.log('Group = ', group);
 
@@ -159,11 +153,8 @@ async function GetVariantResponseCookie(url, cookie) {
     .on('a#url', new URLRewriter('href'))
     .on('a#url', new ContentWriter())
 
-  // testResp.body = finalResp;
-  // console.log('Body = ', finalResp);
-
   return rewriter.transform(new Response(finalResp, {
     headers: { 'content-type': 'text/html', 'Set-Cookie': `${group}; path=/` }
-    // headers: { 'content-type': 'text/plain', 'Set-Cookie': `${CNAME}=${group}; path=/` },
   }))
 }
+
